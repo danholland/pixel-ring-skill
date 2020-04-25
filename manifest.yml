@@ -17,7 +17,7 @@ dependencies:
     #
     #     # If the package has a certain name on a different platform:
     #     pkcon: pianobar libpiano-dev  # For the mycroft platform
-    apt-get: pianobar python3-mraa libmraa1 # For Ubuntu/Debian
+    apt-get: python3-mraa libmraa1 # For Ubuntu/Debian
 #
 #   # Require certain executables to be in the PATH for the install to succeed
 #   exes:
