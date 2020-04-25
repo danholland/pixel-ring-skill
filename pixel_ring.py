@@ -41,4 +41,5 @@ class PixelRing(object):
 
 
     def off(self)
+        self.pattern.stop = False
         self.dev.clear_strip()
