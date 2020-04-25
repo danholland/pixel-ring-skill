@@ -28,10 +28,7 @@ class PixelRing(object):
             self.dev.global_brightness = int(0b11111 * brightness / 100)
 
     def wakeup(self, direction=0):
-        def f():
-            self.pattern.wakeup(direction)
-
-        self.put(f)
+        self.pattern.wakeup(direction)
 
     def listen(self):
         self.put(self.pattern.listen)
