@@ -58,3 +58,7 @@ class Echo():
                     self.dev.set_pixel_rgb(i, colour)
                 self.dev.show()
                 time.sleep(0.1)
+
+    def off(self):
+        self.stop = False
+        self.dev.clear_strip()
