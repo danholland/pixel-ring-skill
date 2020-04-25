@@ -2,8 +2,9 @@ import time
 from .colours import Colours, fade
 
 
-class Echo():
-    def __init__(self, num_pixels=12):
+class Echo(object):
+    def __init__(self, dev, num_pixels=12):
+        self.dev = dev
         self.num_pixels = num_pixels
         self.stop = False
         self.brightness = 100

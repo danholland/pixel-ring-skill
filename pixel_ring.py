@@ -8,7 +8,7 @@ class PixelRing(object):
 
     def __init__(self, pattern='google'):
         self.dev = APA102(num_led=self.PIXELS_N)
-        self.pattern = Echo()
+        self.pattern = Echo(dev=self.dev)
         self.off()
 
     def set_brightness(self, brightness):
