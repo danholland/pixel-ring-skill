@@ -39,7 +39,6 @@ class PixelRing(object):
     def speak(self):
         self.put(self.pattern.speak)
 
-
-    def off(self)
+    def off(self):
         self.pattern.stop = False
         self.dev.clear_strip()
