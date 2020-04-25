@@ -1,7 +1,7 @@
 from mycroft import MycroftSkill, intent_file_handler
 from mycroft.messagebus.message import Message
 
-import mraa
+from . import mraa
 import os
 import time
 from .pixel_ring import PixelRing
