@@ -1,11 +1,6 @@
 from .apa102 import APA102
 from .patterns import Echo
 import time
-import threading
-try:
-    import queue as Queue
-except ImportError:
-    import Queue as Queue
 
 
 class PixelRing(object):
@@ -14,10 +9,6 @@ class PixelRing(object):
     def __init__(self, pattern='google'):
         self.dev = APA102(num_led=self.PIXELS_N)
         self.pattern = Echo()
-        self.queue = Queue.Queue()
-        self.thread = threading.Thread(target=self._run)
-        self.thread.daemon = True
-        self.thread.start()
         self.off()
 
     def set_brightness(self, brightness):
@@ -31,13 +22,13 @@ class PixelRing(object):
         self.pattern.wakeup(direction)
 
     def listen(self):
-        self.put(self.pattern.listen)
+        self.pattern.listen()
 
     def think(self):
-        self.put(self.pattern.think)
+        self.pattern.think()
 
     def speak(self):
-        self.put(self.pattern.speak)
+        self.pattern.speak()
 
     def off(self):
         self.pattern.stop = False
