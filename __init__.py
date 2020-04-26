@@ -27,7 +27,7 @@ class PixelRingSkill(MycroftSkill):
 
     def on_settings_changed(self):
         brightness = self.settings.get('brightness', 15)
-        pattern = self.settings.get(pattern, 'echo')
+        pattern = self.settings.get('pattern', 'echo')
         self.pixel_ring.set_brightness(brightness)
         self.pixel_ring.change_pattern(pattern)
 
