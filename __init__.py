@@ -20,8 +20,6 @@ class PixelRingSkill(MycroftSkill):
     def initialize(self):
         self.log.info("PixelRing initializing")
         self.pixel_ring = PixelRing()
-        self.register_intent_file(
-            'ring.pixel.demo.intent', self.handle_ring_pixel_demo)
         brightness = self.settings.get('brightness', 15)
         self.pixel_ring.set_brightness(brightness)
         self.pixel_ring.wakeup()
@@ -37,14 +35,19 @@ class PixelRingSkill(MycroftSkill):
         self.speak_dialog('ring.pixel')
         self.pixel_ring.wakeup()
 
+    @intent_file_handler('ring.pixel.demo.intent')
     def handle_ring_pixel_demo(self, message):
         self.log.info("Running Pixel Ring demo")
+        self.log.info("PixelRing Wakeup")
         self.pixel_ring.wakeup()
         time.sleep(3)
+        self.log.info("PixelRing Think")
         self.pixel_ring.think()
         time.sleep(3)
+        self.log.info("PixelRing Speak")
         self.pixel_ring.speak()
         time.sleep(3)
+        self.log.info("PixelRing Off")
         self.pixel_ring.off()
 
     def stop(self):
