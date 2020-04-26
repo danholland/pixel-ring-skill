@@ -5,7 +5,8 @@ Colours = {
     'purple': 0x985fbe
 }
 
-def fade(start, end, steps = 6):
+
+def interpolate(start, end, steps=6):
     s = []
     f = []
     s.append((start & 0xFF0000) >> 16)
@@ -21,6 +22,6 @@ def fade(start, end, steps = 6):
             for j in range(3)
         ]
         res = "0x"+"".join(["0{0:x}".format(v) if v < 16 else
-            "{0:x}".format(v) for v in curr_vector])
+                            "{0:x}".format(v) for v in curr_vector])
         arr_result.append(int(res, 16))
     return arr_result
