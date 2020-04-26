@@ -24,11 +24,11 @@ class PixelRingSkill(MycroftSkill):
         self.pixel_ring.set_brightness(brightness)
         self.pixel_ring.wakeup()
 
-    def on_settings_changed(self):
-        brightness = self.settings.get('brightness', 15)
-        pattern = self.settings.get('pattern', 'echo')
-        self.pixel_ring.set_brightness(brightness)
-        self.pixel_ring.change_pattern(pattern)
+#    def on_settings_changed(self):
+#        brightness = self.settings.get('brightness', 15)
+#        pattern = self.settings.get('pattern', 'echo')
+#        self.pixel_ring.set_brightness(brightness)
+#        self.pixel_ring.change_pattern(pattern)
 
     @intent_file_handler('ring.pixel.intent')
     def handle_ring_pixel(self, message):
