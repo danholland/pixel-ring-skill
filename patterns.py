@@ -1,9 +1,11 @@
 import time
 from .colours import Colours, interpolate
+from mycroft.util.log import LOG
 
 
 class Pattern(object):
     def __init__(self, dev, num_pixels=12, brightness=100):
+        LOG.info("Init PixelRing Pattern")
         self.dev = dev
         self.num_pixels = num_pixels
         self.stop = False
@@ -38,6 +40,7 @@ class Pattern(object):
 class Echo(Pattern):
     def __init__(self, dev, num_pixels=12, brightness=100):
         super().__init__(dev=dev, num_pixels=num_pixels, brightness=brightness)
+        LOG.info("Init PixelRing Echo")
 
     def wakeup(self, direction=0):
         for b in range(0, self.brightness, int(self.brightness / 10)):
