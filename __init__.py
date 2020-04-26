@@ -36,6 +36,16 @@ class PixelRingSkill(MycroftSkill):
         self.speak_dialog('ring.pixel')
         self.pixel_ring.wakeup()
 
+    @intent_file_handler('ring.pixel.demo.intent')
+    def handle_ring_pixel_demo(self, message):
+        self.pixel_ring.wakeup()
+        time.sleep(3)
+        self.pixel_ring.think()
+        time.sleep(3)
+        self.pixel_ring.speak()
+        time.sleep(3)
+        self.pixel_ring.off()
+
     def stop(self):
         self.log.debug("Pixel Ring stopping")
         self.pixel_ring.off()
