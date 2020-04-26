@@ -31,13 +31,14 @@ class PixelRingSkill(MycroftSkill):
         self.pixel_ring.set_brightness(brightness)
         self.pixel_ring.change_pattern(pattern)
 
-    @intent_file_handler('ring.pixel.intent')
+    @intent_handler('ring.pixel.intent')
     def handle_ring_pixel(self, message):
         self.speak_dialog('ring.pixel')
         self.pixel_ring.wakeup()
 
-    @intent_file_handler('ring.pixel.demo.intent')
+    @intent_handler('ring.pixel.demo.intent')
     def handle_ring_pixel_demo(self, message):
+        self.log.info("Running Pixel Ring demo")
         self.pixel_ring.wakeup()
         time.sleep(3)
         self.pixel_ring.think()
