@@ -6,7 +6,7 @@ import time
 class PixelRing(object):
     PIXELS_N = 12
 
-    def __init__(self, pattern='google'):
+    def __init__(self, pattern='echo'):
         self.dev = APA102(num_led=self.PIXELS_N)
         self.pattern = Echo(dev=self.dev)
         self.off()
@@ -17,6 +17,9 @@ class PixelRing(object):
 
         if brightness > 0:
             self.dev.global_brightness = int(0b11111 * brightness / 100)
+
+    def change_pattern(self, pattern='echo'):
+        pass
 
     def wakeup(self, direction=0):
         self.pattern.wakeup(direction)
