@@ -17,10 +17,9 @@ class PixelRingSkill(MycroftSkill):
         self.en.dir(mraa.DIR_OUT)
         self.en.write(0)
 
-        self.pixel_ring = PixelRing()
-
     def initialize(self):
         self.log.info("PixelRing initializing")
+        self.pixel_ring = PixelRing()
         self.register_intent_file(
             'ring.pixel.demo.intent', self.handle_ring_pixel_demo)
         brightness = self.settings.get('brightness', 15)
