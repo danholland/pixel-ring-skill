@@ -10,7 +10,7 @@ class Echo(object):
         self.brightness = 100
 
     def wakeup(self, direction=0):
-        for b in range(0, self.brightness, self.brightness / 10):
+        for b in range(0, self.brightness, int(self.brightness / 10)):
             for i in range(self.num_pixels):
                 self.dev.set_pixel_rgb(i, Colours['pruple'], b)
             dir_pixel = int((direction + 15) /
