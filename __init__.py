@@ -20,7 +20,7 @@ class PixelRingSkill(MycroftSkill):
         self.pixel_ring = PixelRing()
 
     def initialize(self):
-        self.log.info("Pixel Ring initializing")
+        self.log.info("PixelRing initializing")
         brightness = self.settings.get('brightness', 15)
         self.pixel_ring.set_brightness(brightness)
         self.pixel_ring.wakeup()
@@ -47,11 +47,11 @@ class PixelRingSkill(MycroftSkill):
         self.pixel_ring.off()
 
     def stop(self):
-        self.log.debug("Pixel Ring stopping")
+        self.log.debug("PixelRing stopping")
         self.pixel_ring.off()
 
     def shutdown(self):
-        self.log.debug("Pixel Ring shutting down")
+        self.log.debug("PixelRing shutting down")
         self.pixel_ring.off()
         self.en.write(1)
 

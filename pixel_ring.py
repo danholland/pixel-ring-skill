@@ -1,6 +1,7 @@
 from .apa102 import APA102
 from .patterns import Echo
 import time
+from mycroft.util.log import LOG
 
 
 class PixelRing(object):
@@ -19,19 +20,25 @@ class PixelRing(object):
             self.dev.global_brightness = int(0b11111 * brightness / 100)
 
     def change_pattern(self, pattern='echo'):
+        LOG.debug("PixelRing changing pattern to " + pattern)
         pass
 
     def wakeup(self, direction=0):
+        LOG.debug("PixelRing wakeup called")
         self.pattern.wakeup(direction)
 
     def listen(self):
+        LOG.debug("PixelRing listen called")
         self.pattern.listen()
 
     def think(self):
+        LOG.debug("PixelRing think called")
         self.pattern.think()
 
     def speak(self):
+        LOG.debug("PixelRing speak called")
         self.pattern.speak()
 
     def off(self):
+        LOG.debug("PixelRing off called")
         self.pattern.off()
