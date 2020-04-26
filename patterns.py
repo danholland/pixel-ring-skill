@@ -12,7 +12,7 @@ class Echo(object):
     def wakeup(self, direction=0):
         for b in range(0, self.brightness, int(self.brightness / 10)):
             for i in range(self.num_pixels):
-                self.dev.set_pixel_rgb(i, Colours['pruple'], b)
+                self.dev.set_pixel_rgb(i, Colours['purple'], b)
             dir_pixel = int((direction + 15) /
                             (360 / self.num_pixels)) % self.num_pixels
             self.dev.set_pixel_rgb(dir_pixel, Colours['aquamarine'], b)
@@ -23,12 +23,12 @@ class Echo(object):
         while not self.stop:
             for b in range(0, self.brightness, int(self.brightness/10)):
                 for i in range(self.num_pixels):
-                    self.dev.set_pixel_rgb(i, Colours['pruple'], b)
+                    self.dev.set_pixel_rgb(i, Colours['purple'], b)
                 self.dev.show()
                 time.sleep(0.1)
             for b in range(self.brightness, 0, int(-self.brightness/10)):
                 for i in range(self.num_pixels):
-                    self.dev.set_pixel_rgb(i, Colours['pruple'], b)
+                    self.dev.set_pixel_rgb(i, Colours['purple'], b)
                 self.dev.show()
                 time.sleep(0.1)
 
