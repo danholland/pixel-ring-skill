@@ -42,10 +42,6 @@ class Pattern(object):
 
 
 class Echo(Pattern):
-    # def __init__(self, dev, num_pixels=12, brightness=100):
-    #     LOG.info("Init PixelRing Echo")
-    #     super().__init__(dev=dev, num_pixels=num_pixels, brightness=brightness)
-
     def wakeup(self, direction=0):
         LOG.debug("PixelRing wakeup really called")
         for b in range(0, self.brightness, int(self.brightness / 10)):
