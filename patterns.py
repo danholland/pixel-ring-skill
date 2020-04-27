@@ -47,6 +47,7 @@ class Echo(Pattern):
     #     super().__init__(dev=dev, num_pixels=num_pixels, brightness=brightness)
 
     def wakeup(self, direction=0):
+        LOG.debug("PixelRing wakeup really called")
         for b in range(0, self.brightness, int(self.brightness / 10)):
             for i in range(self.num_pixels):
                 self.dev.set_pixel_rgb(i, Colours['purple'], b)
