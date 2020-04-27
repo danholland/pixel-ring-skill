@@ -58,15 +58,21 @@ class Echo(Pattern):
             time.sleep(0.1)
 
     def listen(self):
+        self.stop = True
+        self.stop = False
         while not self.stop:
             self.pulse(Colours['purple'])
 
     def think(self):
+        self.stop = True
+        self.stop = False
         pixels = [Colours['aquamarine'], Colours['purple']]
         half_brightness = int(self.brightness / 2)
         while not self.stop:
             self.spin(pixels, 0.3, half_brightness)
 
     def speak(self):
+        self.stop = True
+        self.stop = False
         while not self.stop:
             self.pulse(Colours['aquamarine'], Colours['purple'], 6, 0.1)
