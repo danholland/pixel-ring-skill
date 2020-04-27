@@ -8,7 +8,7 @@ class Pattern(object):
         LOG.info("Init PixelRing Pattern")
         self.dev = dev
         self.num_pixels = num_pixels
-        self.stop = False
+        self.stop = True
         self.brightness = brightness
 
     def spin(self, pixels, delay=0.3, brightness=100, positions=1):
@@ -43,12 +43,11 @@ class Pattern(object):
 
 class Echo(Pattern):
     def wakeup(self, direction=0):
-        LOG.debug("PixelRing wakeup really called")
+        dir_pixel = int((direction + 15) /
+                        (360 / self.num_pixels)) % self.num_pixels
         for b in range(0, self.brightness, int(self.brightness / 10)):
             for i in range(self.num_pixels):
                 self.dev.set_pixel_rgb(i, Colours['purple'], b)
-            dir_pixel = int((direction + 15) /
-                            (360 / self.num_pixels)) % self.num_pixels
             self.dev.set_pixel_rgb(dir_pixel, Colours['aquamarine'], b)
             self.dev.show()
             time.sleep(0.1)
