@@ -56,7 +56,7 @@ class PixelRing(object):
 
     def off(self):
         LOG.debug("PixelRing off called")
-        self.pattern.off()
+        self.put(self.pattern.off)
 
     def put(self, func):
         self.pattern.stop = True
