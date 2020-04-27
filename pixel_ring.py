@@ -10,6 +10,7 @@ class PixelRing(object):
     def __init__(self, pattern='echo'):
         LOG.info("Init PixelRing core")
         self.dev = APA102(num_led=self.PIXELS_N)
+        self.set_brightness(20)
         self.pattern = Echo(dev=self.dev)
         self.off()
 
