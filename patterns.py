@@ -36,11 +36,15 @@ class Pattern(object):
         self.fade(start, end, steps, delay, brightness)
         self.fade(end, start, steps, delay, brightness)
 
+    def off(self):
+        self.stop = True
+        self.dev.clear_strip()
+
 
 class Echo(Pattern):
-    def __init__(self, dev, num_pixels=12, brightness=100):
-        LOG.info("Init PixelRing Echo")
-        super().__init__(dev=dev, num_pixels=num_pixels, brightness=brightness)
+    # def __init__(self, dev, num_pixels=12, brightness=100):
+    #     LOG.info("Init PixelRing Echo")
+    #     super().__init__(dev=dev, num_pixels=num_pixels, brightness=brightness)
 
     def wakeup(self, direction=0):
         for b in range(0, self.brightness, int(self.brightness / 10)):
@@ -65,7 +69,3 @@ class Echo(Pattern):
     def speak(self):
         while not self.stop:
             self.pulse(Colours['aquamarine'], Colours['purple'], 6, 0.1)
-
-    def off(self):
-        self.stop = True
-        self.dev.clear_strip()
