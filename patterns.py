@@ -66,10 +66,10 @@ class Echo(Pattern):
     def think(self):
         self.stop = True
         self.stop = False
-        pixels = [Colours['aquamarine'], Colours['purple']]
+        pixels = [Colours['aquamarine'], Colours['purple'], Colours['purple']]
         half_brightness = int(self.brightness / 2)
         while not self.stop:
-            self.spin(pixels, 0.3, half_brightness)
+            self.spin(pixels, 0.5, half_brightness)
 
     def speak(self):
         self.stop = True
