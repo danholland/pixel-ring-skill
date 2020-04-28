@@ -58,18 +58,16 @@ class PixelRingSkill(MycroftSkill):
             self.log.info("OFF")
             self.stop()
 
-        def unknown():
-            self.log.info("UNKNOWN")
-            self.speak("Sorry, I don't understand")
         known_types = {
             "google": google,
             "echo": echo,
             "amazon": echo,
             "on": on,
-            "off": off,
-            "unknown": unknown
+            "off": off
         }
-        func = known_types.get(pattern_type, unknown())
+        func = known_types.get(
+            pattern_type, lambda: self.speak("Sorry, I don't understand"))
+        self.log.info(func)
         return func()
 
     @intent_file_handler('ring.pixel.demo.intent')
