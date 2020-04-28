@@ -69,3 +69,17 @@ class Echo(Pattern):
         self.stop = False
         while not self.stop:
             self.pulse(Colours['aquamarine'], Colours['purple'], 6, 0.1)
+
+
+class Google(Pattern):
+    def wakeup(self):
+        pass
+
+    def listen(self):
+        pass
+
+    def think(self):
+        pass
+
+    def speak(self):
+        pass
