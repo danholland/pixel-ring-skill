@@ -69,7 +69,7 @@ class PixelRingSkill(MycroftSkill):
             "off": off,
             "unknown": unknown
         }
-        func = known_types.get(pattern_type, "unknown")
+        func = known_types.get(pattern_type, unknown)
         return func()
 
     @intent_file_handler('ring.pixel.demo.intent')
