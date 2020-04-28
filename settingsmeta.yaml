@@ -10,3 +10,4 @@ skillMetadata:
           type: "select"
           label: "Pattern"
           options: "Amazon Echo|echo;Google Home|google"
+          value: "echo"
