@@ -30,32 +30,23 @@ class PixelRingSkill(MycroftSkill):
 #        self.pixel_ring.set_brightness(brightness)
 #        self.pixel_ring.change_pattern(pattern)
 
-    @intent_file_handler('ring.pixel.intent')
-    def handle_ring_pixel(self, message):
-        self.speak_dialog('ring.pixel')
-        self.pixel_ring.wakeup()
-
     @intent_file_handler('ring.pixel.change.intent')
     def handle_ring_pixel_change(self, message):
         pattern_type = message.data.get('type')
         self.log.info(pattern_type)
 
         def google():
-            self.log.info("GOOGLE")
             self.pixel_ring.change_pattern('google')
 
         def echo():
-            self.log.info("ECHO")
             self.pixel_ring.change_pattern('echo')
 
         def on():
-            self.log.info("ON")
             self.pixel_ring.off()
             self.en.write(0)
             self.pixel_ring.wakeup()
 
         def off():
-            self.log.info("OFF")
             self.stop()
 
         known_types = {
@@ -67,7 +58,6 @@ class PixelRingSkill(MycroftSkill):
         }
         func = known_types.get(
             pattern_type, lambda: self.speak("Sorry, I don't understand"))
-        self.log.info(func)
         return func()
 
     @intent_file_handler('ring.pixel.demo.intent')
