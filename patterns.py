@@ -97,7 +97,7 @@ class Google(Pattern):
         Colours['black'],
     ]
 
-    def wakeup(self):
+    def wakeup(self, direction=0):
         pass
 
     def listen(self):
