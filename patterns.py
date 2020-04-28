@@ -82,22 +82,20 @@ class Echo(Pattern):
 
 
 class Google(Pattern):
-    def __init__(self, dev):
-        self.base_pixels = [
-            Colours['red'],
-            Colours['black'],
-            Colours['black'],
-            Colours['yellow'],
-            Colours['black'],
-            Colours['black'],
-            Colours['green'],
-            Colours['black'],
-            Colours['black'],
-            Colours['blue'],
-            Colours['black'],
-            Colours['black'],
-        ]
-        self.dev = dev
+    base_pixels = [
+        Colours['red'],
+        Colours['black'],
+        Colours['black'],
+        Colours['yellow'],
+        Colours['black'],
+        Colours['black'],
+        Colours['green'],
+        Colours['black'],
+        Colours['black'],
+        Colours['blue'],
+        Colours['black'],
+        Colours['black'],
+    ]
 
     def wakeup(self):
         pass
