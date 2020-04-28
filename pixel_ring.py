@@ -1,5 +1,5 @@
 from .apa102 import APA102
-from .patterns import Echo
+from .patterns import Echo, Google
 import time
 from mycroft.util.log import LOG
 import threading
@@ -29,9 +29,12 @@ class PixelRing(object):
         if brightness > 0:
             self.dev.global_brightness = int(0b11111 * brightness / 100)
 
-    def change_pattern(self, pattern='echo'):
+    def change_pattern(self, pattern):
         LOG.debug("PixelRing changing pattern to " + pattern)
-        pass
+        if pattern == 'google':
+            self.pattern = Google(dev=self.dev)
+        else:
+            self.pattern = Echo(dev=self.dev)
 
     def wakeup(self, direction=0):
         LOG.debug("PixelRing wakeup called")
