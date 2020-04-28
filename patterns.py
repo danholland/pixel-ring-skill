@@ -34,6 +34,22 @@ class Pattern(object):
         self.fade(start, end, steps, delay, brightness)
         self.fade(end, start, steps, delay, brightness)
 
+    def dim(self, pixels, steps=10, delay=0.2, dir='out'):
+        factor = int(self.brightness / steps)
+        b = []
+        if dir == 'out':
+            for i in range(self.brightness, 0, -factor):
+                b.append(i)
+        else:
+            for i in range(0, self.brightness, factor):
+                b.append(i)
+        self.dev.clear_strip()
+        for j in b:
+            for led_num in range(len(pixels)):
+                self.dev.set_pixel_rgb(led_num, pixels[led_num], j)
+            self.dev.show()
+            time.sleep(delay)
+
     def off(self):
         self.stop = True
         self.dev.clear_strip()
@@ -51,35 +67,61 @@ class Echo(Pattern):
             time.sleep(0.1)
 
     def listen(self):
-        self.stop = True
-        self.stop = False
         while not self.stop:
             self.pulse(Colours['purple'])
 
     def think(self):
-        self.stop = True
-        self.stop = False
         pixels = [Colours['aquamarine'], Colours['purple'], Colours['purple']]
         half_brightness = int(self.brightness / 2)
         while not self.stop:
             self.spin(pixels, 0.5, half_brightness)
 
     def speak(self):
-        self.stop = True
-        self.stop = False
         while not self.stop:
             self.pulse(Colours['aquamarine'], Colours['purple'], 6, 0.1)
 
 
 class Google(Pattern):
+    def __init__(self):
+        self.base_pixels = [
+            Colours['red'],
+            Colours['black'],
+            Colours['black'],
+            Colours['yellow'],
+            Colours['black'],
+            Colours['black'],
+            Colours['green'],
+            Colours['black'],
+            Colours['black'],
+            Colours['blue'],
+            Colours['black'],
+            Colours['black'],
+        ]
+
     def wakeup(self):
         pass
 
     def listen(self):
-        pass
+        while not self.stop:
+            factor = int(self.brightness / 10)
+            for b in range(self.brightness, 0, -factor):
+                for led_num in range(self.base_pixels):
+                    self.dev.set_pixel_rgb(
+                        led_num, self.base_pixels[led_num], b)
+                self.dev.show()
+                self.dev.rotate()
+            for b in range(0, self.brightness, factor):
+                for led_num in range(self.base_pixels):
+                    self.dev.set_pixel_rgb(
+                        led_num, self.base_pixels[led_num], b)
+                self.dev.show()
+                self.dev.rotate()
 
     def think(self):
-        pass
+        while not self.stop:
+            self.spin(self.base_pixels)
 
     def speak(self):
-        pass
+        while not self.stop:
+            self.dim(self.base_pixels, dir='in')
+            self.dim(self.base_pixels, dir='out')
