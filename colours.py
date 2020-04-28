@@ -1,4 +1,8 @@
 Colours = {
+    'black': 0x0,
+    'red': 0xff0000,
+    'green': 0x00ff00,
+    'yellow': 0xffff00,
     'light_blue': 0x5db3ce,
     'blue': 0x0000ff,
     'aquamarine': 0x5fbebe,
