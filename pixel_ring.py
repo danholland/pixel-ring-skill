@@ -13,9 +13,8 @@ class PixelRing(object):
     PIXELS_N = 12
 
     def __init__(self, pattern='echo'):
-        LOG.info("Init PixelRing core")
+        LOG.debug("Init PixelRing core")
         self.dev = APA102(num_led=self.PIXELS_N)
-        self.set_brightness(20)
         self.pattern = Echo(dev=self.dev)
         self.queue = Queue.Queue()
         self.thread = threading.Thread(target=self._run)
