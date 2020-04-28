@@ -98,7 +98,10 @@ class Google(Pattern):
     ]
 
     def wakeup(self, direction=0):
-        pass
+        for led_num in range(self.num_pixels):
+            self.dev.set_pixel_rgb(
+                led_num, self.base_pixels[led_num], self.brightness)
+        self.dev.show()
 
     def listen(self):
         while not self.stop:
