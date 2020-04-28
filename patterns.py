@@ -107,13 +107,13 @@ class Google(Pattern):
         while not self.stop:
             factor = int(self.brightness / 10)
             for b in range(self.brightness, 0, -factor):
-                for led_num in range(self.base_pixels):
+                for led_num in range(self.num_pixels):
                     self.dev.set_pixel_rgb(
                         led_num, self.base_pixels[led_num], b)
                 self.dev.show()
                 self.dev.rotate()
             for b in range(0, self.brightness, factor):
-                for led_num in range(self.base_pixels):
+                for led_num in range(self.num_pixels):
                     self.dev.set_pixel_rgb(
                         led_num, self.base_pixels[led_num], b)
                 self.dev.show()
