@@ -113,21 +113,23 @@ class Google(Pattern):
                         led_num, pixels[led_num], b)
                 self.dev.show()
                 pixels = self.rotate(pixels)
+                time.sleep(0.1)
             for b in range(0, self.brightness, factor):
                 for led_num in range(self.num_pixels):
                     self.dev.set_pixel_rgb(
                         led_num, pixels[led_num], b)
                 self.dev.show()
                 pixels = self.rotate(pixels)
+                time.sleep(0.1)
 
     def think(self):
         while not self.stop:
-            self.spin(self.base_pixels)
+            self.spin(self.base_pixels, 0.1)
 
     def speak(self):
         while not self.stop:
-            self.dim(self.base_pixels, dir='in')
-            self.dim(self.base_pixels, dir='out')
+            self.dim(self.base_pixels, delay=0.1, dir='in')
+            self.dim(self.base_pixels, delay=0.1, dir='out')
 
     def rotate(self, pixels):
         tmp = pixels[-1]
