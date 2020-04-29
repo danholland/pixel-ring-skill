@@ -15,7 +15,7 @@ class PixelRing(object):
     def __init__(self, pattern='echo'):
         LOG.debug("Init PixelRing core")
         self.dev = APA102(num_led=self.PIXELS_N)
-        self.pattern = Echo(dev=self.dev)
+        self.pattern = Google(dev=self.dev)
         self.queue = Queue.Queue()
         self.thread = threading.Thread(target=self._run)
         self.thread.daemon = True
