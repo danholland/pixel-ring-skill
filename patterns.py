@@ -74,11 +74,11 @@ class Echo(Pattern):
         pixels = [Colours['aquamarine'], Colours['purple'], Colours['purple']]
         half_brightness = int(self.brightness / 2)
         while not self.stop:
-            self.spin(pixels, 0.5, half_brightness)
+            self.spin(pixels, 0.1, half_brightness)
 
     def speak(self):
         while not self.stop:
-            self.pulse(Colours['aquamarine'], Colours['purple'], 6, 0.1)
+            self.pulse(Colours['aquamarine'], Colours['purple'], 20, 0.05)
 
 
 class Google(Pattern):
@@ -98,10 +98,7 @@ class Google(Pattern):
     ]
 
     def wakeup(self, direction=0):
-        for led_num in range(self.num_pixels):
-            self.dev.set_pixel_rgb(
-                led_num, self.base_pixels[led_num], self.brightness)
-        self.dev.show()
+        self.dim(self.base_pixels, 20, 0.05, 'in')
 
     def listen(self):
         pixels = self.base_pixels
@@ -113,23 +110,23 @@ class Google(Pattern):
                         led_num, pixels[led_num], b)
                 self.dev.show()
                 pixels = self.rotate(pixels)
-                time.sleep(0.05)
+                time.sleep(0.07)
             for b in range(0, self.brightness, factor):
                 for led_num in range(self.num_pixels):
                     self.dev.set_pixel_rgb(
                         led_num, pixels[led_num], b)
                 self.dev.show()
                 pixels = self.rotate(pixels)
-                time.sleep(0.05)
+                time.sleep(0.07)
 
     def think(self):
         while not self.stop:
-            self.spin(self.base_pixels, 0.05)
+            self.spin(self.base_pixels, 0.07)
 
     def speak(self):
         while not self.stop:
-            self.dim(self.base_pixels, delay=0.05, dir='in')
-            self.dim(self.base_pixels, delay=0.05, dir='out')
+            self.dim(self.base_pixels, 20, 0.05, 'in')
+            self.dim(self.base_pixels, 20, 0.05, 'out')
 
     def rotate(self, pixels):
         tmp = pixels[-1]
