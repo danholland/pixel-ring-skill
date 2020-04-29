@@ -9,7 +9,7 @@ class Pattern(object):
         self.stop = True
         self.brightness = brightness
 
-    def spin(self, pixels, delay=0.3, brightness=100, positions=1):
+    def spin(self, pixels, delay=0.1, brightness=100, positions=1):
         for led_num in range(self.num_pixels):
             rgb_colour = pixels[led_num % len(pixels)]
             self.dev.set_pixel(led_num, (rgb_colour & 0xFF0000) >> 16,
@@ -20,7 +20,7 @@ class Pattern(object):
             time.sleep(delay)
             self.dev.rotate(positions)
 
-    def fade(self, start, end=0x0, steps=10, delay=0.2, brightness=100):
+    def fade(self, start, end=0x0, steps=20, delay=0.1, brightness=100):
         colours = interpolate(start, end, steps)
         for rgb_colour in colours:
             for led_num in range(self.num_pixels):
@@ -30,11 +30,11 @@ class Pattern(object):
             self.dev.show()
             time.sleep(delay)
 
-    def pulse(self, start, end=0x0, steps=10, delay=0.2, brightness=100):
+    def pulse(self, start, end=0x0, steps=20, delay=0.1, brightness=100):
         self.fade(start, end, steps, delay, brightness)
         self.fade(end, start, steps, delay, brightness)
 
-    def dim(self, pixels, steps=10, delay=0.2, dir='out'):
+    def dim(self, pixels, steps=20, delay=0.1, dir='out'):
         factor = int(self.brightness / steps)
         b = []
         if dir == 'out':
@@ -102,7 +102,7 @@ class Google(Pattern):
 
     def listen(self):
         pixels = self.base_pixels
-        factor = int(self.brightness / 10)
+        factor = int(self.brightness / 20)
         while not self.stop:
             for b in range(self.brightness, 0, -factor):
                 for led_num in range(self.num_pixels):
