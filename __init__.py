@@ -22,7 +22,19 @@ class PixelRingSkill(MycroftSkill):
         self.pixel_ring = PixelRing()
         brightness = self.settings.get('brightness', 15)
         self.pixel_ring.set_brightness(brightness)
-        self.pixel_ring.wakeup()
+#        self.pixel_ring.wakeup()
+        self.add_event('recognizer_loop:record_begin',
+                       self.handle_listener_wakeup)
+        self.add_event('recognizer_loop:record_end', self.handle_listener_off)
+        self.add_event('recognizer_loop:audio_output_start',
+                       self.handle_listener_speak)
+        self.add_event('recognizer_loop:audio_output_end',
+                       self.handle_listener_off)
+        self.add_event('mycroft.skill.handler.start',
+                       self.handle_listener_think)
+        self.add_event('mycroft.skill.handler.complete',
+                       self.handle_listener_off)
+        self.pixel_ring.off()
 
 #    def on_settings_changed(self):
 #        brightness = self.settings.get('brightness', 15)
@@ -59,6 +71,22 @@ class PixelRingSkill(MycroftSkill):
         func = known_types.get(
             pattern_type, lambda: self.speak("Sorry, I don't understand"))
         return func()
+
+    def handle_listener_wakeup(self, message):
+        self.log.debug("wakeup")
+        self.pixel_ring.wakeup()
+
+    def handle_listener_think(self, message):
+        self.log.debug("think")
+        self.pixel_ring.think()
+
+    def handle_listener_speak(self, message):
+        self.log.debug("speak")
+        self.pixel_ring.speak()
+
+    def handle_listener_off(self, message):
+        self.log.debug("off")
+        self.pixel_ring.off()
 
     @intent_file_handler('ring.pixel.demo.intent')
     def handle_ring_pixel_demo(self, message):
