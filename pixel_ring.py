@@ -31,6 +31,7 @@ class PixelRing(object):
 
     def change_pattern(self, pattern):
         LOG.debug("PixelRing changing pattern to " + pattern)
+        self.off()
         if pattern == 'google':
             self.pattern = Google(dev=self.dev)
         else:
