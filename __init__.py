@@ -56,10 +56,10 @@ class PixelRingSkill(MycroftSkill):
         def on():
             self.pixel_ring.off()
             self.en.write(0)
-            self.pixel_ring.wakeup()
+#            self.pixel_ring.wakeup()
 
         def off():
-            self.stop()
+            self.shutdown()
 
         known_types = {
             "google": google,
@@ -90,6 +90,7 @@ class PixelRingSkill(MycroftSkill):
 
     @intent_file_handler('ring.pixel.demo.intent')
     def handle_ring_pixel_demo(self, message):
+        self.pixel_ring.off()
         self.log.info("Running Pixel Ring demo")
         self.log.debug("PixelRing Wakeup")
         self.pixel_ring.wakeup()
