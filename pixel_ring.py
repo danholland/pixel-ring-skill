@@ -60,7 +60,6 @@ class PixelRing(object):
 
     def put(self, func):
         self.pattern.stop = True
-        self.put(self.pattern.off)
         self.queue.put(func)
 
     def _run(self):
