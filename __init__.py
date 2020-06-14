@@ -24,7 +24,7 @@ class PixelRingSkill(MycroftSkill):
         try:
             self.userkey = InputDevice("/dev/input/event0")
         except Exception as e:
-            LOG.debug("exception while reading InputDevice: {}".format(e))
+            self.log.debug("exception while reading InputDevice: {}".format(e))
 
         if self.userkey:
             self.schedule_repeating_event(
