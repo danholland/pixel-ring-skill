@@ -1,6 +1,7 @@
 from mycroft import MycroftSkill, intent_file_handler
 from mycroft.messagebus.message import Message
 
+from evdev import InputDevice
 from . import mraa
 import os
 import time
