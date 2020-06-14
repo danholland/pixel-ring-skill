@@ -31,7 +31,8 @@ class PixelRing(object):
 
     def change_pattern(self, pattern):
         LOG.debug("PixelRing changing pattern to " + pattern)
-        self.off()
+        self.pattern.stop = True
+        self.dev.clear_strip()
         if pattern == 'google':
             self.pattern = Google(dev=self.dev)
         else:
@@ -39,11 +40,7 @@ class PixelRing(object):
 
     def wakeup(self, direction=0):
         LOG.debug("PixelRing wakeup called")
-
-        def f():
-            self.pattern.wakeup(direction)
-
-        self.put(f)
+        self.put(self.pattern.wakeup(direction))
 
     def listen(self):
         LOG.debug("PixelRing listen called")

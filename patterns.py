@@ -8,6 +8,7 @@ class Pattern(object):
         self.num_pixels = num_pixels
         self.stop = True
         self.brightness = brightness
+        self.dev.clear_strip()
 
     def spin(self, pixels, delay=0.1, brightness=100, positions=1):
         for led_num in range(self.num_pixels):
