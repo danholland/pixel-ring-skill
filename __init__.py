@@ -24,7 +24,7 @@ class PixelRingSkill(MycroftSkill):
         self.pixel_ring.set_brightness(brightness)
 #        self.pixel_ring.wakeup()
         self.add_event('recognizer_loop:record_begin',
-                       self.handle_listener_wakeup)
+                       self.handle_listener_listen)
         self.add_event('recognizer_loop:record_end', self.handle_listener_off)
         self.add_event('recognizer_loop:audio_output_start',
                        self.handle_listener_speak)
@@ -72,9 +72,8 @@ class PixelRingSkill(MycroftSkill):
             pattern_type, lambda: self.speak("Sorry, I don't understand"))
         return func()
 
-    def handle_listener_wakeup(self, message):
-        self.log.debug("wakeup")
-#        self.pixel_ring.wakeup()
+    def handle_listener_listen(self, message):
+        self.log.debug("listen")
         self.pixel_ring.listen()
 
     def handle_listener_think(self, message):
