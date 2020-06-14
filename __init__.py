@@ -19,6 +19,16 @@ class PixelRingSkill(MycroftSkill):
 
     def initialize(self):
         self.log.info("PixelRing initializing")
+        self.userkey = None
+        try:
+            self.userkey = InputDevice("/dev/input/event0")
+        except Exception as e:
+            LOG.debug("exception while reading InputDevice: {}".format(e))
+
+        if self.userkey:
+            self.schedule_repeating_event(
+                self.handle_button, None, 0.1, 'PixelRing')
+
         self.pixel_ring = PixelRing()
         brightness = self.settings.get('brightness', 15)
         self.pixel_ring.set_brightness(brightness)
@@ -106,6 +116,23 @@ class PixelRingSkill(MycroftSkill):
         time.sleep(3)
         self.log.debug("PixelRing Off")
         self.pixel_ring.off()
+
+    def handle_button(self, message):
+        if not self.userkey:
+            return
+
+        longpress_threshold = 4
+        respeaker_userkey_code = 194
+
+        if respeaker_userkey_code in self.userkey.active_keys():
+            pressed_time = time.time()
+            while respeaker_userkey_code in self.userkey.active_keys():
+                time.sleep(0.2)
+            pressed_time = time.time()-pressed_time
+            if pressed_time < longpress_threshold:
+                self.bus.emit(Message("mycroft.mic.listen"))
+            else:
+                self.bus.emit(Message("mycroft.stop"))
 
     def stop(self):
         self.log.debug("PixelRing stopping")

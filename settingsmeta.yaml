@@ -1,6 +1,6 @@
 skillMetadata:
   sections:
-    - name: Options
+    - name: "Light Options"
       fields:
         - name: brightness
           type: number
@@ -11,3 +11,9 @@ skillMetadata:
           label: "Pattern"
           options: "Amazon Echo|echo;Google Home|google"
           value: "echo"
+    - name: "Button Options"
+      fields:
+        - name: long_press
+          type: number
+          label: "Long press delay (seconds)"
+          vale: "5"
