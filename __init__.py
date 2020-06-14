@@ -74,7 +74,7 @@ class PixelRingSkill(MycroftSkill):
 
     def handle_listener_wakeup(self, message):
         self.log.debug("wakeup")
-        self.pixel_ring.wakeup()
+#        self.pixel_ring.wakeup()
         self.pixel_ring.listen()
 
     def handle_listener_think(self, message):
