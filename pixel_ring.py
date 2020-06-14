@@ -40,7 +40,11 @@ class PixelRing(object):
 
     def wakeup(self, direction=0):
         LOG.debug("PixelRing wakeup called")
-        self.put(self.pattern.wakeup(direction))
+
+        def f():
+            self.pattern.wakeup(direction)
+
+        self.put(f)
 
     def listen(self):
         LOG.debug("PixelRing listen called")

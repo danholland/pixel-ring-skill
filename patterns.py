@@ -70,7 +70,6 @@ class Echo(Pattern):
             self.dev.set_pixel_rgb(dir_pixel, Colours['aquamarine'], b)
             self.dev.show()
             time.sleep(0.1)
-        self.off()
 
     def listen(self):
         while not self.stop:
@@ -105,7 +104,6 @@ class Google(Pattern):
 
     def wakeup(self, direction=0):
         self.dim(self.base_pixels, 20, 0.05, 'in')
-        self.off()
 
     def listen(self):
         pixels = self.base_pixels
