@@ -55,6 +55,10 @@ class Pattern(object):
         self.stop = True
         self.dev.clear_strip()
 
+    def error(self):
+        while not self.stop:
+            self.pulse(Colours['red'])
+
 
 class Echo(Pattern):
     def wakeup(self, direction=0):
