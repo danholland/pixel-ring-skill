@@ -16,4 +16,4 @@ skillMetadata:
         - name: long_press
           type: number
           label: "Long press delay (seconds)"
-          vale: "5"
+          value: "5"
