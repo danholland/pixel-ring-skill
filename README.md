@@ -6,7 +6,9 @@ Enables pixel ring on reespeaker core v2
 
 Enables pixel ring on respeaker core v2<br/>
 Need to add the respeaker user to input group<br/>
- sudo usermod -a -G input respeaker
+```
+sudo usermod -a -G input respeaker
+```
 
 ## Examples
 
