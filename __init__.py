@@ -33,7 +33,7 @@ class PixelRingSkill(MycroftSkill):
         self.pixel_ring = PixelRing()
         brightness = self.settings.get('brightness', 15)
         self.pixel_ring.set_brightness(brightness)
-#        self.pixel_ring.wakeup()
+        self.add_event('recognizer_loop:wakeword', self.handler_wakeword)
         self.add_event('recognizer_loop:record_begin',
                        self.handle_listener_listen)
         self.add_event('recognizer_loop:record_end', self.handle_listener_off)
@@ -82,6 +82,10 @@ class PixelRingSkill(MycroftSkill):
         func = known_types.get(
             pattern_type, lambda: self.speak("Sorry, I don't understand"))
         return func()
+
+    def handler_wakeword(self, message):
+        self.log.debug("wakeword")
+        self.pixel_ring.wakeup()
 
     def handle_listener_listen(self, message):
         self.log.debug("listen")
